@@ -55,5 +55,6 @@ def display_fixture():
             f"Status: {fixture["status"]}\n"
             f"{home_name} score: {fixture["home_score"]}\n"
             f"{away_name} score: {fixture["away_score"]}\n"
-            '='*40
+            
         )
+        print("="*40)
