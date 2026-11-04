@@ -65,9 +65,8 @@ def display_standings(team_list, fixture_list):
     rankings = calculate_standings(team_list, fixture_list)
     print("\n======= FOOTBALL LEAGUE STANDINGS =======")
     print("")
-    print("Pos | Club                | MP | W  | D  | L  | GF  | GA  | GD  | Pts ")
+    print("Pos  | Club                        |   MP  |   W   |   D   |   L   |   GF  |   GA  |   GD  |   Pts ")
     print("-"*95)
 
     for index, stats in enumerate(rankings, start=1):
         print(f"{index:<4} | {stats['team_name']:<25} | {stats['played']:>4} | {stats['wins']:>4} | {stats['draws']:>4} | {stats['losses']:>4} | {stats['goals_for']:>5} | {stats['goals_against']:>5} | {stats['goal_difference']:>5} | {stats['points']:>5}")
-        

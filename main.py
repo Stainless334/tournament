@@ -29,7 +29,7 @@ def main_menu():
         elif entry == "5":
             record_result()
         elif entry == "6":
-            print(display_standings(team_list, fixture_list))
+            display_standings(team_list, fixture_list)
         elif entry == "0":
             print("THANK YOU FOR CHOOSING FOOTBALL LEAGUE!!")
             break
