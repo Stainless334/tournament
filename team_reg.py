@@ -13,15 +13,18 @@ def generate_team_id():
 def register_teams():
     while True:
 
-        print("Enter the number of teams from 4 to 8")
+        print("Enter the number of teams from 4 to 8 (or 0 to go back)")
 
-        team = input("Your answer: ").strip()
+        team = input(">>> ").strip()
 
         try:
             team = int(team)
         except ValueError:
             print("Invalid: Please enter a number.")
             continue
+
+        if team == 0:
+            return
 
         if team < 4 or team > 8:
             print("Number out of range!")

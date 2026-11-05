@@ -23,9 +23,9 @@
             "id": "M001",
             "home_id": "TM001",
             "away_id": "TM002",
-            "status": "pending",
-            "home_score": null,
-            "away_score": null
+            "status": "played",
+            "home_score": 2,
+            "away_score": 4
         },
         {
             "id": "M002",

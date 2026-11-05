@@ -30,12 +30,10 @@ def generate_fixture(team_list):
             }
 
             fixture_list.append(fixture)
-    return fixture_list
 
 
     
 def display_fixture():
-    fixture_list = generate_fixture(team_list)
     if not fixture_list:
         print("No Fixture has been created yet.")
         return

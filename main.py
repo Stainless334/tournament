@@ -2,7 +2,6 @@ from team_reg import register_teams, view_teams, team_list
 from fixture import generate_fixture, display_fixture, fixture_list
 from record_result import record_result
 from standings import display_standings
-from storage import save_data
 
 def main_menu():
     print("\n========== WELCOME TO FOOTBALL LEAGUE ==========")
@@ -30,7 +29,6 @@ def main_menu():
             display_standings(team_list, fixture_list)
         elif entry == "0":
             print("THANK YOU FOR CHOOSING FOOTBALL LEAGUE!!")
-            save_data(team_list, fixture_list)
             break
         else:
             print("Invalid Input: Enter a number from 0 to 5")
