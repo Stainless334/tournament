@@ -2,8 +2,15 @@ from fixture import fixture_list
 
 
 def record_result():
+    if not fixture_list:
+        print("No Fixture Available.")
+        return
     while True:
-        fixture_id = input("Enter fixture ID: ").strip()
+        
+        fixture_id = input("Enter fixture ID (or 0 to go back): ").strip()
+
+        if fixture_id == "0":
+            return
 
         fixture = None
 

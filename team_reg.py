@@ -38,6 +38,8 @@ def register_teams():
             if not team_name:
                 print("Team name cannot be empty. Try again.")
                 continue
+            if len(team_name) < 2 or len(team_name) > 30:
+                print("Lenght of team_name be between 2 and 30")
 
             if any(team_name.casefold() == existing["team_name"].casefold()
                    for existing in team_list):

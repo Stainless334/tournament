@@ -30,9 +30,12 @@ def generate_fixture(team_list):
             }
 
             fixture_list.append(fixture)
+    return fixture_list
 
-    print("Fixture Generated!")
+
+    
 def display_fixture():
+    fixture_list = generate_fixture(team_list)
     if not fixture_list:
         print("No Fixture has been created yet.")
         return
@@ -52,9 +55,7 @@ def display_fixture():
 
             f"Match ID: {fixture["id"]}\n"
             f"{home_name}(home) vs {away_name}(away)\n"
-            f"Status: {fixture["status"]}\n"
-            f"{home_name} score: {fixture["home_score"]}\n"
-            f"{away_name} score: {fixture["away_score"]}\n"
-            
+            f"Status: {fixture["status"]}\n"            
         )
         print("="*40)
+            
