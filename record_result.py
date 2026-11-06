@@ -1,13 +1,12 @@
-from fixture import fixture_list
+from data import fixture_list
 import time
-from team_reg import team_list
-from storage import save_data
 
 
 def record_result():
+    result_recorded = False
     if not fixture_list:
         print("No Fixture Available.")
-        return
+        return False
     while True:
         while True:
 
@@ -16,7 +15,7 @@ def record_result():
             if fixture_id == "0":
                 print("Returning to main menu...")
                 time.sleep(2)
-                return
+                return result_recorded
 
             fixture = None
 
@@ -62,9 +61,9 @@ def record_result():
         fixture["home_score"] = home_score
         fixture["away_score"] = away_score
         fixture["status"] = "played"
-        save_data(team_list, fixture_list)
-
+        result_recorded = True
         print("Result recorded successfully!")
+        
 
         while True:
             choice = input("Would you like to record another result? (yes/no): ").strip().lower()
@@ -74,9 +73,7 @@ def record_result():
             elif choice == "no":
                 print("Returning to main menu...")
                 time.sleep(3)
-                return
+                return result_recorded
             
             else:
                 print("Please enter yes or no.")
-
-

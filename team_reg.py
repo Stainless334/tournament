@@ -1,4 +1,5 @@
-team_list = []
+from data import fixture_list, team_list
+
 
 def generate_team_id():
     numbers = [
@@ -11,7 +12,11 @@ def generate_team_id():
     return f"TM{next_number:03d}"
 
 def register_teams():
+    registered = False
     while True:
+        if fixture_list:
+            print("No registration after Fixture is generated!")
+            return registered
 
         print("Enter the number of teams from 4 to 8 (or 0 to go back)")
 
@@ -24,7 +29,7 @@ def register_teams():
             continue
 
         if team == 0:
-            return
+            return registered
 
         if team < 4 or team > 8:
             print("Number out of range!")
@@ -43,6 +48,7 @@ def register_teams():
                 continue
             if len(team_name) < 2 or len(team_name) > 30:
                 print("Lenght of team_name be between 2 and 30")
+                continue
 
             if any(team_name.casefold() == existing["team_name"].casefold()
                    for existing in team_list):
@@ -55,8 +61,10 @@ def register_teams():
             }
 
             team_list.append(teams)
+            registered = True
             break
     print(f"{team} Teams Registered Successfully!!")
+    return registered
 
 def view_teams():
     if not team_list:

@@ -80,7 +80,11 @@ def display_standings(team_list, fixture_list):
     print("-"*95)
 
     for index, stats in enumerate(rankings, start=1):
+        
         print(f"{index:<4} | {stats['team_name']:<25} | {stats['played']:>4} | {stats['wins']:>4} | {stats['draws']:>4} | {stats['losses']:>4} | {stats['goals_for']:>5} | {stats['goals_against']:>5} | {stats['goal_difference']:>5} | {stats['points']:>5}")
-
-
-"Pos  | Club                      |   MP  |   W   |   D   |   L   |   GF  |   GA  |   GD  |   Pts "
+    print("")
+    if fixture_list and all(fixture["status"] == "played" for fixture in fixture_list):
+        print("LEAGUE STATUS: COMPLETED")
+        print(f"{'='*30} 🏆 CHAMPION: {rankings[0]['team_name'].upper()} {'='*30}")
+    else:
+        print("LEAGUE STATUS: IN PROGRESS")

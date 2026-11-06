@@ -1,5 +1,4 @@
-from team_reg import team_list
-fixture_list = []
+from data import team_list, fixture_list
 
 def generate_fixture_id():
     numbers = [
@@ -12,11 +11,14 @@ def generate_fixture_id():
     return f"M{next_number:03d}"
 
 def generate_fixture(team_list):
+    if not team_list:
+        print("Cannot Generate Fixture if no team registered!")
+        return False
     length = len(team_list)
 
     if fixture_list:
         print("Fixtures have already been generated!")
-        return
+        return False
 
     for i in range(length):
         for j in range(i + 1, length):
@@ -30,6 +32,8 @@ def generate_fixture(team_list):
             }
 
             fixture_list.append(fixture)
+    print("Fixture generated successfully!")
+    return True
 
 
     

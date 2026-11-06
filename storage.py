@@ -1,5 +1,5 @@
-from team_reg import team_list
-from fixture import fixture_list
+from data import team_list, fixture_list
+
 
 import json
 import os
@@ -36,7 +36,7 @@ def load_data():
     if any(key not in data for key in required_top_keys):
         print("Error: Missing required data!")
         return False
-    if data["schema_version"] != 1:
+    if type(data["schema_version"]) is not int or data["schema_version"] != 1:
         print("Error: Invalid version!")
         return False
     if not isinstance(data["teams"], list):
@@ -45,14 +45,16 @@ def load_data():
     if not isinstance(data["fixtures"], list):
         print("Error: Invalid fixture data!")
         return False
+    
     team_ids = set()
     for team in data["teams"]:
         if not isinstance(team, dict):
             print("Error: Invalid team data!")
             return False
-        if not isinstance(team["id"], str) or team["id"].strip() == "":
-            return False
         if "id" not in team or "team_name" not in team:
+            print("Error: Invalid team data!")
+            return False
+        if not isinstance(team["id"], str) or team["id"].strip() == "":
             print("Error: Invalid team data!")
             return False
         if team["id"] in team_ids:
@@ -62,22 +64,23 @@ def load_data():
         if (
             not isinstance(team["team_name"], str)
             or team["team_name"].strip() == ""
-            or len(team["team_name"]) < 2
-            or len(team["team_name"]) > 30
+            or len(team["team_name"].strip()) < 2
+            or len(team["team_name"].strip()) > 30
         ):
             print("Error: Invalid team data!")
             return False
+        
     fixture_ids = set()
     matchups = set()
     required_keys = ("id", "home_id", "away_id", "status", "home_score", "away_score")
-    
     for fixture in data["fixtures"]:
         if not isinstance(fixture, dict):
             print("Error: Invalid fixture data!")
             return False
-        if not isinstance(fixture["id"], str) or fixture["id"].strip() == "":
-            return False
         if any(key not in fixture for key in required_keys):
+            print("Error: Invalid fixture data!")
+            return False
+        if not isinstance(fixture["id"], str) or fixture["id"].strip() == "":
             print("Error: Invalid fixture data!")
             return False
         if fixture["id"] in fixture_ids:
@@ -129,8 +132,3 @@ def load_data():
     team_list[:] = data["teams"]
     fixture_list[:] = data["fixtures"]
     return True
-
-if load_data():
-    print("League data loaded successfully!")
-else:
-    print("Could not load league data.")
